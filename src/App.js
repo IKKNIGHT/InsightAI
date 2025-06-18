@@ -1,12 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import backgroundImage from './header.jpg';
 import { motion } from 'framer-motion';
 
 function App() {
+    const [showAIPage, setShowAIPage] = useState(false);
+
     const handleGetStarted = () => {
-        window.location.href = '/ai'; // Example navigation, change if using routing
+        setShowAIPage(true);
     };
+
+    if (showAIPage) {
+        return <p>AI PAGE</p>;
+    }
 
     return (
         <div className="main-container">
@@ -27,12 +33,12 @@ function App() {
                 <motion.h1
                     initial={{ y: -30, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 1 }}
+                    transition={{ duration: 0.6 }}
                     style={{
                         color: 'white',
                         fontSize: '128px',
                         marginBottom: '10px',
-                        fontWeight: 300, // Sleek, thinner look
+                        fontWeight: 300,
                     }}
                 >
                     Insight AI
@@ -43,7 +49,7 @@ function App() {
                 className="content-section"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ duration: 1 }}
+                transition={{ duration: 0.6 }}
                 style={{
                     textAlign: 'center',
                     marginTop: '40px',
@@ -54,36 +60,58 @@ function App() {
                     Create essays that inspire
                 </h2>
 
-                <div className="widget-buttons" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'row', gap: '20px', marginBottom: '30px' }}>
-                    {['Paste your Essay', 'Let Insight AI look at your essay', 'Generate valuable feedback'].map((text, index) => (
-                        <motion.div
-                            key={index}
-                            className="widget"
-                            initial={{ y: 20, opacity: 0 }}
-                            animate={{ y: 0, opacity: 1 }}
-                            transition={{ delay: 0.3 + index * 0.2, duration: 0.5 }}
-                            style={{
-                                backgroundColor: 'white',
-                                padding: '20px 30px',
-                                borderRadius: '15px',
-                                boxShadow: '0 12px 36px rgba(0,0,0,0.25)', // More dramatic shadow
-                                fontWeight: 'bold',
-                                minWidth: '200px',
-                                textAlign: 'center',
-                            }}
-                        >
-                            {text}
-                        </motion.div>
-                    ))}
+                <div
+                    className="widget-buttons"
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'row',
+                        gap: '20px',
+                        marginBottom: '30px',
+                    }}
+                >
+                    {['Paste your Essay', 'Let Insight AI look at your essay', 'Generate valuable feedback'].map(
+                        (text, index) => (
+                            <motion.div
+                                key={index}
+                                className="widget"
+                                initial={{ y: 20, opacity: 0 }}
+                                animate={{ y: 0, opacity: 1 }}
+                                transition={{ duration: 0.4, delay: index * 0.1 }}
+                                whileHover={{
+                                    scale: 1.05,
+                                    boxShadow: '0 16px 40px rgba(0, 0, 0, 0.3)',
+                                }}
+                                style={{
+                                    backgroundColor: 'white',
+                                    padding: '20px 30px',
+                                    borderRadius: '15px',
+                                    boxShadow: '0 12px 36px rgba(0,0,0,0.25)',
+                                    fontWeight: 'bold',
+                                    minWidth: '200px',
+                                    textAlign: 'center',
+                                    transition: 'box-shadow 0.3s ease',
+                                    cursor: 'pointer',
+                                }}
+                            >
+                                {text}
+                            </motion.div>
+                        )
+                    )}
                 </div>
 
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <motion.button
                         onClick={handleGetStarted}
                         className="get-started-button"
-                        initial={{ scale: 0.9, opacity: 0 }}
+                        initial={{ scale: 0.95, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 1.2, duration: 0.4 }}
+                        whileHover={{
+                            scale: 1.05,
+                            backgroundColor: '#347cd8',
+                        }}
+                        transition={{ duration: 0.4 }}
                         style={{
                             padding: '16px 36px',
                             fontSize: '1.2rem',
