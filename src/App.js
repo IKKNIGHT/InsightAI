@@ -62,6 +62,7 @@ function App() {
                         </div>
                         <textarea
                             placeholder="Paste your essay here..."
+                            maxLength={10000} /* 10k due to the deepseek limit to be 15k */
                             style={{
                                 flex: 1,
                                 width: '100%',
