@@ -21,10 +21,10 @@ function App() {
         setFeedback('');
 
         try {
-            const response = await fetch('/api/generate-feedback', {
+            const response = await fetch('https://insightai-express-backend.onrender.com/api/generate-feedback', { // backend server
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ essay }),
+                body: JSON.stringify({ essay })
             });
 
             const data = await response.json();
